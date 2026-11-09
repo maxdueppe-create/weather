@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Only Weather</title>
+  <meta name="description" content="A weather app that shows only the weather data you ask for.">
+  <meta name="theme-color" content="#f4f2ed" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101417" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#results" data-i18n="skip">Skip to results</a>
+
+  <header class="top">
+    <h1 class="brand"><span class="brand-mark" aria-hidden="true"></span><span data-i18n="appName">Only Weather</span></h1>
+    <label class="lang">
+      <span class="visually-hidden" data-i18n="language">Language</span>
+      <select id="lang">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>
+    </label>
+  </header>
+
+  <main>
+    <form id="ask" class="ask" novalidate>
+      <div class="field-group">
+        <label for="request" class="label" data-i18n="requestLabel">What do you want to see?</label>
+        <input id="request" name="request" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+               enterkeyhint="go" data-i18n-placeholder="requestPlaceholder" placeholder="e.g. rain and wind">
+      </div>
+
+      <details id="picker" class="picker">
+        <summary data-i18n="pickFromList">Or pick from the list</summary>
+        <fieldset>
+          <legend class="visually-hidden" data-i18n="pickFromList">Or pick from the list</legend>
+          <div id="checkboxes" class="checks"></div>
+        </fieldset>
+      </details>
+
+      <div class="field-group">
+        <label for="city" class="label" data-i18n="cityLabel">Where?</label>
+        <div class="where">
+          <input id="city" name="city" type="text" autocomplete="address-level2" enterkeyhint="go"
+                 data-i18n-placeholder="cityPlaceholder" placeholder="City, e.g. Lisbon">
+          <button id="gps" type="button" class="btn btn-quiet" aria-describedby="gps-status">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="3.2" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <span data-i18n="useLocation">Use my location</span>
+          </button>
+        </div>
+        <p id="gps-status" class="hint" aria-live="polite"></p>
+      </div>
+
+      <button id="show" type="submit" class="btn btn-primary" data-i18n="show">Show weather</button>
+    </form>
+
+    <div id="message" class="message" role="alert" hidden>
+      <p id="message-text"></p>
+      <button id="retry" type="button" class="btn btn-quiet" hidden data-i18n="retry">Retry</button>
+    </div>
+
+    <section id="results" class="results" aria-live="polite" aria-busy="false" tabindex="-1"></section>
+  </main>
+
+  <footer class="foot">
+    <p><span data-i18n="dataBy">Weather data by</span> <a href="https://open-meteo.com/" rel="noopener">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>).
+      <span id="cams-credit" hidden data-i18n="camsCredit">Pollen: Copernicus Atmosphere Monitoring Service information.</span></p>
+    <p><span data-i18n="privacy">No tracking. Nothing is stored.</span> · <a href="https://opensource.org/license/mit" rel="noopener">MIT</a></p>
+  </footer>
+</body>
+</html>

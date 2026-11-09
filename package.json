@@ -1,0 +1,11 @@
+{
+  "name": "only-weather",
+  "version": "1.0.0",
+  "description": "A weather PWA that shows only the weather data you ask for.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test parser.test.js",
+    "start": "python3 -m http.server 8080"
+  }
+}
